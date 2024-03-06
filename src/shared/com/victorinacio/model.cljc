@@ -2,6 +2,7 @@
   (:require
     [com.victorinacio.model.timezone :as timezone]
     [com.victorinacio.model.account :as account]
+    [com.victorinacio.model.todo :as todo]
     [com.victorinacio.model.item :as item]
     [com.victorinacio.model.invoice :as invoice]
     [com.victorinacio.model.line-item :as line-item]
@@ -13,6 +14,7 @@
 
 (def all-attributes (vec (concat
                            account/attributes
+                           todo/attributes
                            address/attributes
                            category/attributes
                            item/attributes

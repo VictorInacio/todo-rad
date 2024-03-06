@@ -7,7 +7,4 @@
 
 (defstate ^{:on-reload :noop} datomic-connections
   :start
-  (do
-    (println "##### CONFIG #####")
-    (println #_all-attributes config)
-    (datomic/start-databases all-attributes config)))
+  (datomic/start-databases all-attributes config))

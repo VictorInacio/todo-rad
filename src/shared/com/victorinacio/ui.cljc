@@ -6,6 +6,7 @@
     #?(:clj  [com.fulcrologic.fulcro.dom-server :as dom :refer [div label input]]
        :cljs [com.fulcrologic.fulcro.dom :as dom :refer [div label input]])
     [com.victorinacio.ui.account-forms :refer [AccountForm AccountList]]
+    [com.victorinacio.ui.todo-forms :refer [TodoList TodoForm]]
     [com.victorinacio.ui.invoice-forms :refer [InvoiceForm InvoiceList AccountInvoices]]
     [com.victorinacio.ui.item-forms :refer [ItemForm InventoryReport]]
     [com.victorinacio.ui.line-item-forms :refer [LineItemForm]]
@@ -38,7 +39,7 @@
                          sales-report/SalesReport InventoryReport
                          sales-report/RealSalesReport
                          dashboard/Dashboard
-                         mdetail/AccountList]}
+                         mdetail/AccountList TodoList TodoForm]}
   ;; Normal Fulcro code to show a loader on slow route change (assuming Semantic UI here, should
   ;; be generalized for RAD so UI-specific code isn't necessary)
   (dom/div
@@ -72,6 +73,10 @@
           (when logged-in?
             #?(:cljs
                (comp/fragment
+                 (ui-dropdown {:className "item" :text "Todo"}
+                   (ui-dropdown-menu {}
+                     (ui-dropdown-item {:onClick (fn [] (rroute/route-to! this TodoList {}))} "View All")
+                     (ui-dropdown-item {:onClick (fn [] (form/create! this TodoForm))} "New")))
                  (ui-dropdown {:className "item" :text "Account"}
                    (ui-dropdown-menu {}
                      (ui-dropdown-item {:onClick (fn [] (rroute/route-to! this AccountList {}))} "View All")

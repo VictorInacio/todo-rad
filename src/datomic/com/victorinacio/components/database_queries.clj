@@ -5,6 +5,20 @@
     [taoensso.timbre :as log]
     [taoensso.encore :as enc]))
 
+(defn get-all-todos
+  [env query-params]
+  (if-let [db (some-> (get-in env [::datomic/databases :production]) deref)]
+    (let [ids (if (:show-completed? query-params)
+                (d/q [:find '[?uuid ...]
+                      :where
+                      ['?dbid :todo/id '?uuid]] db)
+                (d/q [:find '[?uuid ...]
+                      :where
+                      ['?dbid :todo/completed? true]
+                      ['?dbid :todo/id '?uuid]] db))]
+      (mapv (fn [id] {:todo/id id}) ids))
+    (log/error "No database atom for production schema!")))
+
 (defn get-all-accounts
   [env query-params]
   (if-let [db (some-> (get-in env [::datomic/databases :production]) deref)]
