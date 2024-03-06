@@ -26,9 +26,7 @@
 ;; data in forms when "mixing" server side "entities/tables/documents".
 (form/defsc-form TodoForm [this props]
   {fo/id             todo/id
-   ;   ::form/read-only?          true
-   fo/attributes     [;account/avatar
-                      todo/name
+   fo/attributes     [todo/name
                       todo/completed?]
    fo/default-values {:todo/name         ""
                       :todo/completed? false}
@@ -38,17 +36,12 @@
 
 (report/defsc-report TodoList [this props]
   {ro/title               "All Todos"
-   ;; NOTE: You can uncomment these 3 lines to see how to switch over to using hand-written row rendering, with a list style
-   ;::report/layout-style             :list
-   ;::report/row-style                :list
-   ;::report/BodyItem                 AccountListItem
-
-   ;; The rendering options can also be set globally. Putting them on the component override globals.
-   suo/rendering-options  {suo/action-button-render      (fn [this {:keys [key onClick label]}]
-                                                           (when (= key ::new-account)
-                                                             (dom/button :.ui.tiny.basic.button {:onClick onClick}
-                                                               (dom/i {:className "icon user"})
-                                                               label)))
+   suo/rendering-options  {
+                           ;suo/action-button-render      (fn [this {:keys [key onClick label]}]
+                           ;                                (when (= key ::new-account)
+                           ;                                  (dom/button :.ui.tiny.basic.button {:onClick onClick}
+                           ;                                    (dom/i {:className "icon user"})
+                           ;                                    label)))
                            suo/body-class                ""
                            suo/controls-class            ""
                            suo/layout-class              ""
@@ -66,7 +59,7 @@
    ro/columns             [todo/name todo/completed?]
    ro/row-pk              todo/id
    ro/source-attribute    :todo/all-todos
-   ro/row-visible?        (fn [{::keys [filter-name]} {:account/keys [name]}]
+   ro/row-visible?        (fn [{::keys [filter-name]} {:todo/keys [name]}]
                             (let [nm     (some-> name (str/lower-case))
                                   target (some-> filter-name (str/trim) (str/lower-case))]
                               (or

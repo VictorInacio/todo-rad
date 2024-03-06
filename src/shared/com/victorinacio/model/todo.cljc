@@ -50,4 +50,4 @@
                    #?(:clj
                       {:todo/all-todos (queries/get-all-todos env query-params)}))})
 
-(def attributes [id name completed?])
+(def attributes [id name completed? all-todos])
