@@ -3,12 +3,12 @@
     [clojure.pprint :refer [pprint]]
     [clojure.repl :refer [doc source]]
     [clojure.tools.namespace.repl :as tools-ns :refer [disable-reload! refresh clear set-refresh-dirs]]
-    [com.example.components.datomic :refer [datomic-connections]]
-    [com.example.components.ring-middleware]
-    [com.example.components.server]
-    [com.example.model.seed :as seed]
-    [com.example.model.account :as account]
-    [com.example.model.address :as address]
+    [com.victorinacio.components.datomic :refer [datomic-connections]]
+    [com.victorinacio.components.ring-middleware]
+    [com.victorinacio.components.server]
+    [com.victorinacio.model.seed :as seed]
+    [com.victorinacio.model.account :as account]
+    [com.victorinacio.model.address :as address]
     [com.fulcrologic.rad.ids :refer [new-uuid]]
     [com.fulcrologic.rad.database-adapters.datomic :as datomic]
     [com.fulcrologic.rad.resolvers :as res]
@@ -92,4 +92,7 @@
   (tools-ns/refresh :after 'development/start))
 
 (def reset #'restart)
+
+(comment
+  (reset))
 

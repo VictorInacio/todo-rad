@@ -33,27 +33,19 @@
  :aliases {:test      {:extra-paths ["src/shared-tests"]
                        :extra-deps  {fulcrologic/fulcro-spec {:mvn/version "3.1.12"}}}
 
-           :sql       {:extra-paths ["src/sql" "src/sql-tests"]
-                       :extra-deps  {com.h2database/h2              {:mvn/version "2.1.214" :exclusions [org.slf4j/slf4j-nop]}
-                                     com.fulcrologic/fulcro-rad-sql {:mvn/version "0.0.8-alpha"}}}
-
            :datomic   {:extra-paths ["src/datomic"]
                        :extra-deps  {
                                      ;com.datomic/dev-local              {:mvn/version "1.0.243"}
-                                     ;com.datomic/local                  {:mvn/version "1.0.277"}
+                                     com.datomic/local                  {:mvn/version "1.0.277"}
                                      com.datomic/peer                   {:mvn/version "1.0.7075"}
                                      ;com.datomic/client-cloud           {:mvn/version "1.0.122"}
                                      ;com.fulcrologic/fulcro-rad-datomic {:mvn/version "1.4.0"}
+
+                                     ;com.datomic/local        {:mvn/version "1.0.276"}
+                                     ;com.datomic/client-cloud {:mvn/version "1.0.125"}
+
                                      com.fulcrologic/fulcro-rad-datomic {:mvn/version "1.5.4"
                                                                          :exclusions  [com.datomic/datomic-free]}}}
-           :asami     {:extra-paths ["src/asami" "src/asami-tests"]
-                       :extra-deps  {cz.holyjak/fulcro-rad-asami {:git/url "https://github.com/holyjak/fulcro-rad-asami"
-                                                                  :sha     "46b6f59643db171be0aa2b3bdc72806935f0ece4"}}}
-           :xtdb      {:extra-paths ["src/xtdb" "src/xtdb-tests"]
-                       :extra-deps  {com.xtdb/xtdb-core                   {:mvn/version "1.23.1"}
-                                     com.xtdb/xtdb-rocksdb                {:mvn/version "1.23.1"}
-                                     com.xtdb/xtdb-jdbc                   {:mvn/version "1.23.1"}
-                                     net.clojars.roterski/fulcro-rad-xtdb {:mvn/version "0.0.1-alpha-9"}}}
            :run-tests {:main-opts  ["-m" "kaocha.runner"]
                        :extra-deps {lambdaisland/kaocha {:mvn/version "1.77.1236"}}}
 

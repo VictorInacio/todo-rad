@@ -1,12 +1,12 @@
-(ns com.example.model.authorization-test
+(ns com.victorinacio.model.authorization-test
   (:require
     [com.fulcrologic.rad.authorization :as auth]
     [com.fulcrologic.rad.database-adapters.datomic :as datomic]
     [com.fulcrologic.rad.ids :refer [new-uuid]]
-    [com.example.model.seed :as seed]
-    [com.example.model :refer [all-attributes]]
+    [com.victorinacio.model.seed :as seed]
+    [com.victorinacio.model :refer [all-attributes]]
     [com.fulcrologic.guardrails.core :refer [>defn =>]]
-    [com.example.model.authorization :as exauth]
+    [com.victorinacio.model.authorization :as exauth]
     [datomic.api :as d]
     [fulcro-spec.core :refer [specification assertions component]]))
 
