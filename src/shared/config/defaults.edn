@@ -3,8 +3,8 @@
  :com.fulcrologic.rad.database-adapters.datomic/databases
  {:main {:datomic/schema           :production
          :datomic/driver           :mem
-         :datomic/database         "example"
-         :datomic/prevent-changes? true}}
+         :datomic/database         "victorinacio-rad"
+         :datomic/prevent-changes? false}}
 
  :roterski.fulcro.rad.database-adapters.xtdb/databases
  {:main {
